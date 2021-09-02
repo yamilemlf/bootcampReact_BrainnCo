@@ -1,8 +1,7 @@
-function Content () {
+function Content ({ children }) {
     return (
-        <section>
-            <h1>Título</h1>
-            <p>Parágrafo</p>
+        <section className="setionContent">
+            { children }
         </section>
     );
 };

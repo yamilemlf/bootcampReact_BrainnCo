@@ -1,3 +1,120 @@
+body {
+    margin: 0;
+}
+
+
 header {
-    color: red;
+    background-color:cadetblue;
+    display: flex;
+    justify-content: center;
+}
+
+.titleHeader {
+    color:rgb(25, 40, 41);
+}
+
+
+
+nav {
+    background-color: rgb(182, 246, 248);
+}
+
+.menuBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+}
+
+.menuItems {
+    list-style: none;
+}
+
+.menuItems a {
+    text-decoration: none;
+    color: cadetblue;
+}
+
+
+
+.sb_content {
+    display: flex;
+    flex-direction: row;
+    width:auto;
+    padding: 10px 0px ;
+    background-color: rgb(219, 254, 255);
+
+}
+
+aside {
+    width: 20%;
+    border-right: 1px solid  cadetblue;
+    
+}
+
+aside h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(24, 95, 99);
+    color: rgb(148, 199, 201);
+    border: 1px solid cadetblue;
+    margin: 0;
+    height: 60px;
+}
+
+
+section {
+    display: flex;
+    flex-direction: column;
+    color: cadetblue;
+    width: 80%;
+    padding: 8px;
+    align-items: center;
+}
+
+section h1 {
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+
+section h4 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+footer {
+    background-color: rgb(182, 246, 248);
+    color: cadetblue;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footerText {
+    margin: 8px;
+    font-size: smaller;
+}
+
+
+
+button {
+    border-radius: 8px;
+    padding: 8px 24px;
+    
+}
+
+.primary {
+    background-color: rgb(48, 122, 172);
+    color: rgb(6, 44, 75);
+}
+
+.secondary {
+    background-color: rgb(6, 44, 75);
+    color: white;
+    
 }
