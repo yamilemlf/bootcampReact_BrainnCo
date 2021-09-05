@@ -6,8 +6,11 @@ import Footer from './footer'
 import H1 from './h1'
 import H4 from './h4'
 import Button from './button'
+import { useState } from 'react'
 
 function App () {
+    const [artTitle, setArtTitle] = useState(articles[0].title)
+    const [artContent, setArtContent] = useState(articles[0].content)
     return (
         <>
             <Header />
@@ -15,17 +18,18 @@ function App () {
             <div className="sb_content">
                 <Sidebar>
                     <ul >
-                        {aulas.map((item, id) => (
+                        {articles.map((item, id) => (
                             <li key={id} className="sidebar">
-                                <a  href={item.content}>{item.title}</a>
+                                <a  href={item.id}>{item.title}</a>
                             </li>
                         ))}
                     </ul>      
                 </Sidebar>
                 <Content>
-                    <H1>Desafio nº 2</H1>
-                    <H4>Segundo desafio do Bootcamp React</H4>
-                    <Button kind="secondary">Enviar</Button>
+                    <H1>{artTitle}</H1>
+                    <H4>{artContent}</H4>
+                    <Button kind="primary">Assistir</Button>
+                    <Button kind="secondary">Voltar</Button>
                 </Content>
                 
             </div>
@@ -34,7 +38,7 @@ function App () {
     )
 };
 
-const aulas = [
+const articles = [
     {
         id: 1,
         title: 'Aula 1',
