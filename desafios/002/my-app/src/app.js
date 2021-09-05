@@ -11,6 +11,13 @@ import { useState } from 'react'
 function App () {
     const [artTitle, setArtTitle] = useState(articles[0].title)
     const [artContent, setArtContent] = useState(articles[0].content)
+   
+    function handleLink(newPostId) {
+        const newPost = articles.find((item) => item.id === newPostId)
+        setArtTitle(newPost.title)
+        setArtContent(newPost.content)
+    }
+
     return (
         <>
             <Header />
@@ -18,9 +25,15 @@ function App () {
             <div className="sb_content">
                 <Sidebar>
                     <ul >
-                        {articles.map((item, id) => (
-                            <li key={id} className="sidebar">
-                                <a  href={item.id}>{item.title}</a>
+                        {articles.map((item) => (
+                            <li key={item.id} className="sidebar">
+                                <a href={item.id} onClick={
+                                    (e) => {
+                                        e.preventDefault() 
+                                        handleLink(item.id)
+                                    }
+                                }                                
+                                >{item.title}</a>
                             </li>
                         ))}
                     </ul>      
@@ -48,7 +61,12 @@ const articles = [
         id: 2,
         title: 'Aula 2',
         content: 'JSX e Virtual DOM',
-    }
+    },
+    {
+        id: 3,
+        title: 'Aula 3',
+        content: 'Create React App',
+    },
 ]
 
 

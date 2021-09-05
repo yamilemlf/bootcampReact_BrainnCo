@@ -1,7 +1,7 @@
-function Sidebar ({ children }) {
+function Sidebar ({children}) {
     return (
         <aside>
-            {children}
+            {children} 
         </aside>
     );
 };
