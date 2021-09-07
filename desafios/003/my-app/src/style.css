@@ -1,0 +1,38 @@
+body {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    color:darkslategray;
+    margin: 0;
+    margin-top: 60px;
+    background-color:darkslategray;
+}
+  
+.cars {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    padding: 36px 0px;
+    background-color: rgb(230, 236, 200);
+}
+  
+.cars div {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+}
+
+form {
+    margin-left: 48px;
+}
+  
+label {
+    margin-right: 8px;
+    width: 130px;
+    text-align: left;
+}
+
+
+table {
+    margin-right: 48px;
+    
+}
+
