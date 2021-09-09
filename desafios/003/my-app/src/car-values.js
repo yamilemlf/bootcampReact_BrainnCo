@@ -7,7 +7,7 @@ const columns = [
     {
         labelName: 'Marca/Modelo',
         type: 'text',
-        id: 'brand-model',
+        id: 'brandModel',
     },
     {
         labelName: 'Ano',
