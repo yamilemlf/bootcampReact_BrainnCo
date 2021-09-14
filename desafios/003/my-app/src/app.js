@@ -1,33 +1,44 @@
 import Form from './form'
 import Table from './table'
-import { useState} from 'react'
-
+import { useEffect, useState } from 'react'
+import { get } from './http'
 
 function App() {
     const [cars, setCars] = useState([])
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    const columns = [
+        { labelName: 'Imagem (URL)', type: 'text', id: 'image' },
+        { labelName: 'Marca/Modelo', type: 'text', id: 'brandModel' },
+        { labelName: 'Ano', type: 'number', id: 'year' },
+        { labelName: 'Placa', type: 'text', id: 'plate' },
+        { labelName: 'Cor', type: 'color', id: 'color' }
+    ]
+   
+    const url = 'http://localhost:3333/cars'
+    console.log('cars: ', cars)
     
-    function handleSubmit(e) {
-        e.preventDefault()
-        const carData = {
-            image: e.target.elements.image.value,
-            brandModel: e.target.elements.brandModel.value,
-            year: e.target.elements.year.value,
-            plate: e.target.elements.plate.value,
-            color: e.target.elements.color.value,
-        }
-        
-        setCars((cars) => {
-            return (cars.concat(carData))
+    useEffect(() => {
+        get(url).then(result => {
+            if(result.error) {
+                setErrorMessage(result.message)
+                return
+            }
+            setCars(result)
         })
-
-        e.target.reset();
-    };
-
+    }, [])
+    
     return(
-        <div className="cars">
-            <Form  handleSubmit={ handleSubmit } cars={cars}/>
-            <Table cars={ cars } />
-        </div>
+        <>
+            {errorMessage !== null && (
+                <div className="error-message hide" />
+            )}
+            <div className="cars">
+                <Form data-js="cars-form" columns={columns} setCars={setCars} cars={cars}/>   
+                <Table columns={columns} cars={cars}/>           
+            </div>
+        </>
+        
     )
 }
 

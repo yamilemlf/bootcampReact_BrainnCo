@@ -33,7 +33,14 @@ label {
 
 table {
     margin-right: 48px;
-    
+}
+
+th {
+    padding: 0px 20px;
+}
+
+td {
+    padding: 0px 20px;
 }
 
 img {
@@ -41,7 +48,7 @@ img {
     height: 100px;
 }
 
-div .color {
+.divColor {
     width: 100px;
     height: 100px;
 }

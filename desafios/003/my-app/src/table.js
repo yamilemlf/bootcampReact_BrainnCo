@@ -1,6 +1,5 @@
-import columns from "./car-values"
+function Table({ columns, cars }) {
 
-function Table({ cars }) {    
     return (
         <table>
             <thead>
@@ -9,11 +8,16 @@ function Table({ cars }) {
                         return (
                             <th key={item.id}>{item.labelName}</th>
                         )
-                    })} 
+                    })}
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                {cars.map((item) => {
+                {cars.length === 0 && 
+                    <tr>
+                        <td>Nenhum carro cadastrado</td>
+                    </tr>}
+                {cars.length !== 0 && cars.map((item) => {
                         return (
                             <tr key={item.plate}>
                                 <td>
@@ -23,7 +27,10 @@ function Table({ cars }) {
                                 <td>{item.year}</td>
                                 <td>{item.plate}</td>
                                 <td>
-                                    <div background={item.color}></div>
+                                    <div className="divColor" style={{backgroundColor: item.color}}></div>
+                                </td>
+                                <td>
+                                    <button data-js={item.plate}>Excluir</button>
                                 </td>
                             </tr>
                         )
@@ -35,3 +42,4 @@ function Table({ cars }) {
 }
 
 export default Table
+

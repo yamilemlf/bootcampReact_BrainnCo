@@ -1,9 +1,34 @@
-import columns from "./car-values"
-import Button from './button'
+import { post } from './http'
 
-function Form({ handleSubmit}) {
+function Form({ columns, setCars, setErrorMessage }) {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const image = e.target.elements.image.value
+        const carData = {
+            image: e.target.elements.image.value,
+            brandModel: e.target.elements.brandModel.value,
+            year: e.target.elements.year.value,
+            plate: e.target.elements.plate.value,
+            color: e.target.elements.color.value,
+        }
+
+        const result = await post('http://localhost:3333/cars', carData)
+        
+        if(result.error) {
+            setErrorMessage(result.message)
+            return
+        }
+
+        setCars(cars => {
+            return (cars.concat(carData))
+        })
+
+        e.target.reset();
+        image.focus();
+    }
+    
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>            
             <h3>Preencha os dados abaixo</h3>
 
             {columns.map((item) => {
@@ -15,9 +40,15 @@ function Form({ handleSubmit}) {
                 )            
             })}
 
-            <Button type="submit">Cadastrar</Button>
+            <button type="submit" >Cadastrar carro</button>
         </form>
     );
 };
 
 export default Form;
+
+
+
+
+
+
