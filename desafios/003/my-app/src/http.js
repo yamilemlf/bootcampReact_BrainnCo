@@ -1,9 +1,9 @@
 const request = (url, options) =>
   fetch(url, options)
     .then(r => r.json())
-    .catch(e => ({ error: true, message: e.message }));
+    .catch(e => ({ error: true, message: e.message }))
 
-const createOptions = (method, data) => ({
+const createRequest = (method) => (url, data) => request(url, {
   method,
   headers: {
     'content-type': 'application/json',
@@ -12,5 +12,5 @@ const createOptions = (method, data) => ({
 })
 
 export const get = (url) => request(url)
-export const post = (url, data) => request(url, createOptions('POST', data))
-export const del = (url, data) => request(url, createOptions('DELETE', data))
+export const post = createRequest('POST')
+export const del = createRequest('DELETE')

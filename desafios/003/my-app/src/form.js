@@ -3,7 +3,7 @@ import { post } from './http'
 function Form({ columns, setCars, setErrorMessage }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const image = e.target.elements.image.value
+
         const carData = {
             image: e.target.elements.image.value,
             brandModel: e.target.elements.brandModel.value,
@@ -24,7 +24,6 @@ function Form({ columns, setCars, setErrorMessage }) {
         })
 
         e.target.reset();
-        image.focus();
     }
     
     return (

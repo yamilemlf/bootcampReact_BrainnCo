@@ -1,5 +1,4 @@
-function Table({ columns, cars }) {
-
+function Table({ columns, cars, handleDelete }) {
     return (
         <table>
             <thead>
@@ -30,7 +29,7 @@ function Table({ columns, cars }) {
                                     <div className="divColor" style={{backgroundColor: item.color}}></div>
                                 </td>
                                 <td>
-                                    <button data-js={item.plate}>Excluir</button>
+                                    <button onClick={() => {handleDelete(item.plate)}}>Excluir</button>
                                 </td>
                             </tr>
                         )

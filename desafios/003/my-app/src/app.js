@@ -1,11 +1,21 @@
 import Form from './form'
 import Table from './table'
 import { useEffect, useState } from 'react'
-import { get } from './http'
+import { get, del } from './http'
 
 function App() {
     const [cars, setCars] = useState([])
     const [errorMessage, setErrorMessage] = useState(null)
+
+    useEffect(() => {
+        get(url).then(result => {
+            if(result.error) {
+                setErrorMessage(result.message)
+                return
+            }
+            setCars(result)
+        })
+    }, [])
 
     const columns = [
         { labelName: 'Imagem (URL)', type: 'text', id: 'image' },
@@ -18,15 +28,15 @@ function App() {
     const url = 'http://localhost:3333/cars'
     console.log('cars: ', cars)
     
-    useEffect(() => {
-        get(url).then(result => {
-            if(result.error) {
-                setErrorMessage(result.message)
-                return
-            }
-            setCars(result)
-        })
-    }, [])
+    async function handleDelete(plate) {
+        const result = await del(url, {plate})
+        if(result.error) {
+            setErrorMessage(result.message)
+            return
+        }
+
+        setCars(cars => cars.filter(car => car.plate !== plate))
+    }
     
     return(
         <>
@@ -34,8 +44,8 @@ function App() {
                 <div className="error-message hide" />
             )}
             <div className="cars">
-                <Form data-js="cars-form" columns={columns} setCars={setCars} cars={cars}/>   
-                <Table columns={columns} cars={cars}/>           
+                <Form data-js="cars-form" columns={columns} setCars={setCars} setErrorMessage={setErrorMessage}/>   
+                <Table columns={columns} cars={cars} handleDelete={handleDelete} />           
             </div>
         </>
         
